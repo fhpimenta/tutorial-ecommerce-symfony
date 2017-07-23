@@ -11,10 +11,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
  * @package EcommerceBundle\Controller
  */
 
-/**
- * @Route("/users")
- */
-
 class DefaultController extends Controller
 {
     /**
@@ -23,14 +19,5 @@ class DefaultController extends Controller
     public function indexAction()
     {
         return $this->render('EcommerceBundle:Default:index.html.twig');
-    }
-
-    /**
-     * @Route("/test")
-     * @Method("GET")
-     */
-    public function testAction()
-    {
-        return $this->render('EcommerceBundle:Default:test.html.twig');
     }
 }

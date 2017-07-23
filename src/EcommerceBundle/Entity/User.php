@@ -3,6 +3,7 @@
 namespace EcommerceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="EcommerceBundle\Repository\UserRepository")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var int
@@ -52,9 +53,9 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="role", type="string", length=255)
+     * @ORM\Column(name="roles", type="string", length=255)
      */
-    private $role;
+    private $roles;
 
     /**
      * @var bool
@@ -183,13 +184,13 @@ class User
     /**
      * Set role
      *
-     * @param string $role
+     * @param string $roles
      *
      * @return User
      */
-    public function setRole($role)
+    public function setRoles($roles)
     {
-        $this->role = $role;
+        $this->roles = $roles;
 
         return $this;
     }
@@ -199,9 +200,9 @@ class User
      *
      * @return string
      */
-    public function getRole()
+    public function getRoles()
     {
-        return $this->role;
+        return ! $this->roles ? [] : explode(',', $this->roles);
     }
 
     /**
@@ -274,6 +275,16 @@ class User
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
     }
 }
 
